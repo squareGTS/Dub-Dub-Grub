@@ -22,6 +22,7 @@
 		51023ADF2955AFDD00C3A7D6 /* AlerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023ADE2955AFDD00C3A7D6 /* AlerItem.swift */; };
 		51023AE22955B43800C3A7D6 /* LocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AE12955B43800C3A7D6 /* LocationMapViewModel.swift */; };
 		51023AE52955B97000C3A7D6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AE42955B97000C3A7D6 /* LocationManager.swift */; };
+		51023AE72955D33600C3A7D6 /* CKAsset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AE62955D33600C3A7D6 /* CKAsset+Ext.swift */; };
 		51CFDEF529530B5900C64BA3 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CFDEF429530B5900C64BA3 /* DubDubGrubApp.swift */; };
 		51CFDEF929530B5B00C64BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CFDEF829530B5B00C64BA3 /* Assets.xcassets */; };
 		51CFDEFC29530B5B00C64BA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CFDEFB29530B5B00C64BA3 /* Preview Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		51023ADE2955AFDD00C3A7D6 /* AlerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlerItem.swift; sourceTree = "<group>"; };
 		51023AE12955B43800C3A7D6 /* LocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewModel.swift; sourceTree = "<group>"; };
 		51023AE42955B97000C3A7D6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		51023AE62955D33600C3A7D6 /* CKAsset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKAsset+Ext.swift"; sourceTree = "<group>"; };
 		51CFDEF129530B5900C64BA3 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CFDEF429530B5900C64BA3 /* DubDubGrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DubDubGrubApp.swift; sourceTree = "<group>"; };
 		51CFDEF829530B5B00C64BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				51023AC72954A2C900C3A7D6 /* View+Ext.swift */,
 				51DC929D29531535005C6F5E /* Color+Ext.swift */,
 				51023ADC2955A7B900C3A7D6 /* CKRecord+Ext.swift */,
+				51023AE62955D33600C3A7D6 /* CKAsset+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				51023ACA2954A39A00C3A7D6 /* DDGButton.swift in Sources */,
 				51023AE22955B43800C3A7D6 /* LocationMapViewModel.swift in Sources */,
 				51023AE52955B97000C3A7D6 /* LocationManager.swift in Sources */,
+				51023AE72955D33600C3A7D6 /* CKAsset+Ext.swift in Sources */,
 				51023AC429549BC100C3A7D6 /* AvatarView.swift in Sources */,
 				51DC929E29531535005C6F5E /* Color+Ext.swift in Sources */,
 				51023ADF2955AFDD00C3A7D6 /* AlerItem.swift in Sources */,
