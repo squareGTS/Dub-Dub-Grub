@@ -23,6 +23,9 @@
 		51023AE22955B43800C3A7D6 /* LocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AE12955B43800C3A7D6 /* LocationMapViewModel.swift */; };
 		51023AE52955B97000C3A7D6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AE42955B97000C3A7D6 /* LocationManager.swift */; };
 		51023AE72955D33600C3A7D6 /* CKAsset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AE62955D33600C3A7D6 /* CKAsset+Ext.swift */; };
+		51023AE92955F58700C3A7D6 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AE82955F58700C3A7D6 /* OnboardView.swift */; };
+		51023AEB2955F5BF00C3A7D6 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AEA2955F5BF00C3A7D6 /* LogoView.swift */; };
+		51023AEE2955F9B300C3A7D6 /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AED2955F9B300C3A7D6 /* XDismissButton.swift */; };
 		51CFDEF529530B5900C64BA3 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CFDEF429530B5900C64BA3 /* DubDubGrubApp.swift */; };
 		51CFDEF929530B5B00C64BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CFDEF829530B5B00C64BA3 /* Assets.xcassets */; };
 		51CFDEFC29530B5B00C64BA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CFDEFB29530B5B00C64BA3 /* Preview Assets.xcassets */; };
@@ -50,6 +53,9 @@
 		51023AE12955B43800C3A7D6 /* LocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewModel.swift; sourceTree = "<group>"; };
 		51023AE42955B97000C3A7D6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		51023AE62955D33600C3A7D6 /* CKAsset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKAsset+Ext.swift"; sourceTree = "<group>"; };
+		51023AE82955F58700C3A7D6 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
+		51023AEA2955F5BF00C3A7D6 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		51023AED2955F9B300C3A7D6 /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		51CFDEF129530B5900C64BA3 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CFDEF429530B5900C64BA3 /* DubDubGrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DubDubGrubApp.swift; sourceTree = "<group>"; };
 		51CFDEF829530B5B00C64BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +109,7 @@
 				51023ABF295456E800C3A7D6 /* LocationDetailView.swift */,
 				51DC92A3295315E9005C6F5E /* LocationListView.swift */,
 				51DC92A5295315F3005C6F5E /* ProfileView.swift */,
+				51023AE82955F58700C3A7D6 /* OnboardView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -118,8 +125,9 @@
 		51023ACF2954A8A200C3A7D6 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				51023AEC2955F9A400C3A7D6 /* Buttons */,
 				51023AC329549BC100C3A7D6 /* AvatarView.swift */,
-				51023AC92954A39A00C3A7D6 /* DDGButton.swift */,
+				51023AEA2955F5BF00C3A7D6 /* LogoView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -161,6 +169,15 @@
 				51023AE42955B97000C3A7D6 /* LocationManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		51023AEC2955F9A400C3A7D6 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				51023AED2955F9B300C3A7D6 /* XDismissButton.swift */,
+				51023AC92954A39A00C3A7D6 /* DDGButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		51CFDEE829530B5900C64BA3 = {
@@ -284,12 +301,15 @@
 				51DC92A6295315F3005C6F5E /* ProfileView.swift in Sources */,
 				51023AD92955A34800C3A7D6 /* CloudKitManager.swift in Sources */,
 				51023AC82954A2C900C3A7D6 /* View+Ext.swift in Sources */,
+				51023AEB2955F5BF00C3A7D6 /* LogoView.swift in Sources */,
+				51023AEE2955F9B300C3A7D6 /* XDismissButton.swift in Sources */,
 				51023AC229549B8E00C3A7D6 /* LocationCell.swift in Sources */,
 				51023ADD2955A7B900C3A7D6 /* CKRecord+Ext.swift in Sources */,
 				51023ACA2954A39A00C3A7D6 /* DDGButton.swift in Sources */,
 				51023AE22955B43800C3A7D6 /* LocationMapViewModel.swift in Sources */,
 				51023AE52955B97000C3A7D6 /* LocationManager.swift in Sources */,
 				51023AE72955D33600C3A7D6 /* CKAsset+Ext.swift in Sources */,
+				51023AE92955F58700C3A7D6 /* OnboardView.swift in Sources */,
 				51023AC429549BC100C3A7D6 /* AvatarView.swift in Sources */,
 				51DC929E29531535005C6F5E /* Color+Ext.swift in Sources */,
 				51023ADF2955AFDD00C3A7D6 /* AlerItem.swift in Sources */,
