@@ -27,6 +27,7 @@
 		51023AEB2955F5BF00C3A7D6 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AEA2955F5BF00C3A7D6 /* LogoView.swift */; };
 		51023AEE2955F9B300C3A7D6 /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AED2955F9B300C3A7D6 /* XDismissButton.swift */; };
 		51B08049295A30C100F724C9 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B08048295A30C100F724C9 /* UIImage+Ext.swift */; };
+		51B0804C295AFFE700F724C9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0804B295AFFE700F724C9 /* ProfileViewModel.swift */; };
 		51CFDEF529530B5900C64BA3 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CFDEF429530B5900C64BA3 /* DubDubGrubApp.swift */; };
 		51CFDEF929530B5B00C64BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CFDEF829530B5B00C64BA3 /* Assets.xcassets */; };
 		51CFDEFC29530B5B00C64BA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CFDEFB29530B5B00C64BA3 /* Preview Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		51023AEA2955F5BF00C3A7D6 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		51023AED2955F9B300C3A7D6 /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		51B08048295A30C100F724C9 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		51B0804B295AFFE700F724C9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		51CFDEF129530B5900C64BA3 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CFDEF429530B5900C64BA3 /* DubDubGrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DubDubGrubApp.swift; sourceTree = "<group>"; };
 		51CFDEF829530B5B00C64BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,11 +111,11 @@
 		51023ACD2954A83F00C3A7D6 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				51B0804A295AFFC800F724C9 /* ProfileView */,
 				51023AE02955B42300C3A7D6 /* LocationMapView */,
 				51DC929F29531589005C6F5E /* AppTabView.swift */,
 				51023ABF295456E800C3A7D6 /* LocationDetailView.swift */,
 				51DC92A3295315E9005C6F5E /* LocationListView.swift */,
-				51DC92A5295315F3005C6F5E /* ProfileView.swift */,
 				51023AE82955F58700C3A7D6 /* OnboardView.swift */,
 			);
 			path = Screens;
@@ -184,6 +186,15 @@
 				51023AC92954A39A00C3A7D6 /* DDGButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		51B0804A295AFFC800F724C9 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				51B0804B295AFFE700F724C9 /* ProfileViewModel.swift */,
+				51DC92A5295315F3005C6F5E /* ProfileView.swift */,
+			);
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
 		51CFDEE829530B5900C64BA3 = {
@@ -320,6 +331,7 @@
 				51023AEE2955F9B300C3A7D6 /* XDismissButton.swift in Sources */,
 				51023AC229549B8E00C3A7D6 /* LocationCell.swift in Sources */,
 				51023ADD2955A7B900C3A7D6 /* CKRecord+Ext.swift in Sources */,
+				51B0804C295AFFE700F724C9 /* ProfileViewModel.swift in Sources */,
 				51023ACA2954A39A00C3A7D6 /* DDGButton.swift in Sources */,
 				51023AE22955B43800C3A7D6 /* LocationMapViewModel.swift in Sources */,
 				51023AE52955B97000C3A7D6 /* LocationManager.swift in Sources */,
