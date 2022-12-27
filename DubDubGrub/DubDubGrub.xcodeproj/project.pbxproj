@@ -28,6 +28,7 @@
 		51023AEE2955F9B300C3A7D6 /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51023AED2955F9B300C3A7D6 /* XDismissButton.swift */; };
 		51B08049295A30C100F724C9 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B08048295A30C100F724C9 /* UIImage+Ext.swift */; };
 		51B0804C295AFFE700F724C9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0804B295AFFE700F724C9 /* ProfileViewModel.swift */; };
+		51B0804E295B875200F724C9 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B0804D295B875200F724C9 /* LoadingView.swift */; };
 		51CFDEF529530B5900C64BA3 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CFDEF429530B5900C64BA3 /* DubDubGrubApp.swift */; };
 		51CFDEF929530B5B00C64BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CFDEF829530B5B00C64BA3 /* Assets.xcassets */; };
 		51CFDEFC29530B5B00C64BA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CFDEFB29530B5B00C64BA3 /* Preview Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		51023AED2955F9B300C3A7D6 /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		51B08048295A30C100F724C9 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		51B0804B295AFFE700F724C9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		51B0804D295B875200F724C9 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		51CFDEF129530B5900C64BA3 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CFDEF429530B5900C64BA3 /* DubDubGrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DubDubGrubApp.swift; sourceTree = "<group>"; };
 		51CFDEF829530B5B00C64BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				51023AEC2955F9A400C3A7D6 /* Buttons */,
 				51023AC329549BC100C3A7D6 /* AvatarView.swift */,
 				51023AEA2955F5BF00C3A7D6 /* LogoView.swift */,
+				51B0804D295B875200F724C9 /* LoadingView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				51023AE72955D33600C3A7D6 /* CKAsset+Ext.swift in Sources */,
 				51023AE92955F58700C3A7D6 /* OnboardView.swift in Sources */,
 				51023AC429549BC100C3A7D6 /* AvatarView.swift in Sources */,
+				51B0804E295B875200F724C9 /* LoadingView.swift in Sources */,
 				51B08049295A30C100F724C9 /* UIImage+Ext.swift in Sources */,
 				51DC929E29531535005C6F5E /* Color+Ext.swift in Sources */,
 				51023ADF2955AFDD00C3A7D6 /* AlerItem.swift in Sources */,
