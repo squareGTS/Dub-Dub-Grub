@@ -155,7 +155,6 @@
 			children = (
 				51023AE32955B95F00C3A7D6 /* Managers */,
 				51023ACB2954A81F00C3A7D6 /* Extensions */,
-				51023AD82955A34800C3A7D6 /* CloudKitManager.swift */,
 				51023ADA2955A42000C3A7D6 /* Constants.swift */,
 				51023ADE2955AFDD00C3A7D6 /* AlerItem.swift */,
 			);
@@ -174,6 +173,7 @@
 		51023AE32955B95F00C3A7D6 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				51023AD82955A34800C3A7D6 /* CloudKitManager.swift */,
 				51023AE42955B97000C3A7D6 /* LocationManager.swift */,
 			);
 			path = Managers;
