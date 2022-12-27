@@ -60,7 +60,7 @@ struct ProfileView: View {
             Spacer()
             
             Button {
-                createProfile()
+                // createProfile()
             } label: {
                 DDGButton(title: "Create Profile")
             }
@@ -74,6 +74,7 @@ struct ProfileView: View {
                 Image(systemName: "keyboard.chevron.compact.down")
             }
         }
+        .onAppear { getProfile() }
         .alert(item: $alertItem, content: { alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         })
@@ -132,6 +133,41 @@ struct ProfileView: View {
                     print(saveRecords)
                 }
                 CKContainer.default().publicCloudDatabase.add(operation)
+            }
+        }
+    }
+    
+    func getProfile() {
+        CKContainer.default().fetchUserRecordID { recordID, error in
+            guard let recordID = recordID, error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
+                guard let userRecord = userRecord, error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                let profileReference = userRecord["userProfile"] as! CKRecord.Reference
+                let recordRecordID = profileReference.recordID
+                
+                CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordRecordID) { profileRecord, error in
+                    guard let profileRecord = profileRecord, error == nil else {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    
+                    DispatchQueue.main.async {
+                        let profile = DDGProfile(record: profileRecord)
+                        firstName = profile.firstName
+                        lastName = profile.lastName
+                        companyName = profile.companyName
+                        bio = profile.bio
+                        avatar = profile.createAvatarImage()
+                    }
+                }
             }
         }
     }
