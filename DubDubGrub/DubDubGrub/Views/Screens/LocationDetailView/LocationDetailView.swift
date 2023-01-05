@@ -46,7 +46,7 @@ struct LocationDetailView: View {
                             LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
                         }
                         Button {
-                            viewModel.updateCheckInStatus(to: .checkedIn)
+                            viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
                         } label: {
                             LocationActionButton(color: .brandPrimary, imageName: "person.fill.checkmark")
                         }
@@ -60,10 +60,13 @@ struct LocationDetailView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: viewModel.columns, content: {
-                        FirstNameAvstsrName(image: PlaceholderImage.avatar, firstName: "Sean")
-                            .onTapGesture {
-                                viewModel.isShowingProfileModel = true
-                            }
+                        
+                        ForEach(viewModel.checkedInProfiles) { profile in
+                            FirstNameAvstsrName(profile: profile)
+                                .onTapGesture {
+                                    viewModel.isShowingProfileModel = true
+                                }
+                        }
                     })
                 }
                 Spacer()
@@ -73,9 +76,9 @@ struct LocationDetailView: View {
                 Color(.systemBackground)
                     .ignoresSafeArea()
                     .opacity(0.9)
-//                    .transition(.opacity)
+                //                    .transition(.opacity)
                     .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
-                  //  .animation(.easeOut)
+                //  .animation(.easeOut)
                     .zIndex(1)
                 ProfileModalView(isShowingProfileModal: $viewModel.isShowingProfileModel,
                                  profile: DDGProfile(record: MockData.profile))
@@ -84,6 +87,7 @@ struct LocationDetailView: View {
                 .zIndex(2)
             }
         }
+        .onAppear { viewModel.getCheckedInProfile() }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         })
@@ -120,14 +124,13 @@ struct LocationActionButton: View {
 }
 
 struct FirstNameAvstsrName: View {
-    var image: UIImage
-    var firstName: String
+    var profile: DDGProfile
     
     var body: some View {
         VStack {
-            AvatarView(image: image, size: 64)
+            AvatarView(image: profile.createAvatarImage(), size: 64)
             
-            Text(firstName)
+            Text(profile.firstName)
                 .bold()
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
