@@ -10,6 +10,7 @@ import SwiftUI
 struct LocationCell: View {
     
     var location: DDGLocation
+    var profiles: [DDGProfile]
     
     var body: some View {
         HStack {
@@ -27,12 +28,28 @@ struct LocationCell: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
                 
-                HStack {
-                    AvatarView(image: PlaceholderImage.avatar, size: 35)
-                    AvatarView(image: PlaceholderImage.avatar, size: 35)
-                    AvatarView(image: PlaceholderImage.avatar, size: 35)
-                    AvatarView(image: PlaceholderImage.avatar, size: 35)
-                    AvatarView(image: PlaceholderImage.avatar, size: 35)
+                if profiles.isEmpty {
+                    Text("Nobody's Checked In")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 2)
+                    
+//                    HStack {
+//                        AvatarView(image: PlaceholderImage.avatar, size: 35)
+//                        AvatarView(image: PlaceholderImage.avatar, size: 35)
+//                        AvatarView(image: PlaceholderImage.avatar, size: 35)
+//                        AdditionalProfilesView(number: 99)
+//                    }
+                } else {
+                    HStack {
+                        ForEach(profiles.indices, id: \.self) { index in
+                            if index <= 3 {
+                                AvatarView(image: profiles[index].createAvatarImage(), size: 35)
+                            } else if index == 4 {
+                                AdditionalProfilesView(number: profiles.count - 4)
+                            }
+                        }
+                    }
                 }
             }
             .padding(.leading)
@@ -42,6 +59,19 @@ struct LocationCell: View {
 
 struct LocationCell_Previews: PreviewProvider {
     static var previews: some View {
-        LocationCell(location: DDGLocation(record: MockData.location))
+        LocationCell(location: DDGLocation(record: MockData.location), profiles: [])
+    }
+}
+
+struct AdditionalProfilesView: View {
+    var number: Int
+    
+    var body: some View {
+        Text("+\(number)")
+            .font(.system(size: 14, weight: .semibold))
+            .frame(width: 35, height: 35)
+            .foregroundColor(.white)
+            .background(Color.brandPrimary)
+            .clipShape(Circle())
     }
 }
