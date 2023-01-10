@@ -103,8 +103,8 @@
 		51023ACB2954A81F00C3A7D6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				51023AC72954A2C900C3A7D6 /* View+Ext.swift */,
 				51DC929D29531535005C6F5E /* Color+Ext.swift */,
+				51023AC72954A2C900C3A7D6 /* View+Ext.swift */,
 				51023ADC2955A7B900C3A7D6 /* CKRecord+Ext.swift */,
 				51023AE62955D33600C3A7D6 /* CKAsset+Ext.swift */,
 				51B08048295A30C100F724C9 /* UIImage+Ext.swift */,
