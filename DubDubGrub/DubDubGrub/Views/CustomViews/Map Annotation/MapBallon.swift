@@ -17,9 +17,7 @@ struct MapBallon: Shape {
 //        path.addLine(to: CGPoint(x: rect.minX, y: rect.midY))
 //        path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
 //        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        
-        
-        
+
         return path
     }
 }

@@ -36,6 +36,7 @@
 		51D1F3E2295EF45E004D20A9 /* ProfileModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D1F3E1295EF45E004D20A9 /* ProfileModalView.swift */; };
 		51DC55C0296C9FA500A5DCE5 /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC55BF296C9FA500A5DCE5 /* LocationListViewModel.swift */; };
 		51DC55C3296D559800A5DCE5 /* MapBallon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC55C2296D559800A5DCE5 /* MapBallon.swift */; };
+		51DC55C5296D5B2F00A5DCE5 /* DDGAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC55C4296D5B2F00A5DCE5 /* DDGAnnotation.swift */; };
 		51DC929E29531535005C6F5E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC929D29531535005C6F5E /* Color+Ext.swift */; };
 		51DC92A029531589005C6F5E /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC929F29531589005C6F5E /* AppTabView.swift */; };
 		51DC92A2295315C8005C6F5E /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC92A1295315C8005C6F5E /* LocationMapView.swift */; };
@@ -75,6 +76,7 @@
 		51D1F3E1295EF45E004D20A9 /* ProfileModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalView.swift; sourceTree = "<group>"; };
 		51DC55BF296C9FA500A5DCE5 /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
 		51DC55C2296D559800A5DCE5 /* MapBallon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBallon.swift; sourceTree = "<group>"; };
+		51DC55C4296D5B2F00A5DCE5 /* DDGAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGAnnotation.swift; sourceTree = "<group>"; };
 		51DC929C29531389005C6F5E /* DubDubGrub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DubDubGrub.entitlements; sourceTree = "<group>"; };
 		51DC929D29531535005C6F5E /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		51DC929F29531589005C6F5E /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				51DC55C2296D559800A5DCE5 /* MapBallon.swift */,
+				51DC55C4296D5B2F00A5DCE5 /* DDGAnnotation.swift */,
 			);
 			path = "Map Annotation";
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				51023AC229549B8E00C3A7D6 /* LocationCell.swift in Sources */,
 				51023ADD2955A7B900C3A7D6 /* CKRecord+Ext.swift in Sources */,
 				51B0804C295AFFE700F724C9 /* ProfileViewModel.swift in Sources */,
+				51DC55C5296D5B2F00A5DCE5 /* DDGAnnotation.swift in Sources */,
 				51023ACA2954A39A00C3A7D6 /* DDGButton.swift in Sources */,
 				51023AE22955B43800C3A7D6 /* LocationMapViewModel.swift in Sources */,
 				51DC55C0296C9FA500A5DCE5 /* LocationListViewModel.swift in Sources */,
