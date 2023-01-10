@@ -12,7 +12,6 @@ enum ProfileContext {
 }
 
 final class ProfileViewModel: ObservableObject {
-    
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var companyName = ""
@@ -80,6 +79,7 @@ final class ProfileViewModel: ObservableObject {
                         }
                     }
                 }
+                
             case .failure(_):
                 DispatchQueue.main.async {
                     self.alertItem = AlertContext.unableToCheckInOrOut
@@ -117,6 +117,7 @@ final class ProfileViewModel: ObservableObject {
                     }
                     self.alertItem = AlertContext.createProfileSuccess
                     break
+                    
                 case .failure(_):
                     self.alertItem = AlertContext.createProfileFailure
                     break
@@ -148,6 +149,7 @@ final class ProfileViewModel: ObservableObject {
                     companyName = profile.companyName
                     bio = profile.bio
                     avatar = profile.createAvatarImage()
+                    
                 case .failure(_):
                     self.alertItem = AlertContext.unableToGetProfile
                     break

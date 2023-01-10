@@ -5,14 +5,15 @@
 //  Created by Maxim Bekmetov on 23.12.2022.
 //
 
-import MapKit
 import CloudKit
+import MapKit
 
 final class LocationMapViewModel: ObservableObject {
     @Published var checkedInProfiles: [CKRecord.ID: Int] = [:]
     @Published var isShowingDetailView = false
     @Published var alertItem: AlertItem?
-    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054),
+                                               span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
  
     func getLocations(for locationManager: LocationManager) {
         CloudKitManager.shared.getLocations { result in

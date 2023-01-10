@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ProfileModalView: View {
-    
     @Binding var isShowingProfileModal: Bool
-    
     var profile: DDGProfile
     
     var body: some View {

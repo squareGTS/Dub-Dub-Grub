@@ -13,24 +13,17 @@ struct AppTabView: View {
     var body: some View {
         TabView {
             LocationMapView()
-                .tabItem {
-                    Label("Map", systemImage: "map")
-                }
+                .tabItem { Label("Map", systemImage: "map") }
             LocationListView()
-                .tabItem {
-                    Label("Locations", systemImage: "building")
-                }
+                .tabItem { Label("Locations", systemImage: "building") }
             NavigationView{
                 ProfileView()
             }
-            .tabItem {
-                Label("Profile", systemImage: "person")
-            }
+            .tabItem { Label("Profile", systemImage: "person") }
         }
         .onAppear {
             CloudKitManager.shared.getUserRecord()
             viewModel.runStartupChecks()
-            
         }
         .accentColor(.brandPrimary)
         .sheet(isPresented: $viewModel.isShowingOnboardView, onDismiss: viewModel.checkIfLocationServicesIsEnabled) {

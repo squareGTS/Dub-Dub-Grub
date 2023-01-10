@@ -25,7 +25,6 @@ struct PhotoPicker: UIViewControllerRepresentable {
     }
     
     final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        
         let photoPicker: PhotoPicker
         
         init(photoPicker: PhotoPicker) {

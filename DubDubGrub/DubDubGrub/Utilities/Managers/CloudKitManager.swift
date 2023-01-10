@@ -104,7 +104,6 @@ final class CloudKitManager {
             }
             //handle cursor in later video
             
-            
             completed(.success(checkedInProfiles))
         }
         CKContainer.default().publicCloudDatabase.add(operation)
@@ -139,7 +138,6 @@ final class CloudKitManager {
     }
     
     func batchSave(records: [CKRecord], completed: @escaping (Result<[CKRecord], Error>) -> ()) {
-        
         //Create a CKOperation to save our User and Profile Records
         let operation = CKModifyRecordsOperation(recordsToSave: records)
         operation.modifyRecordsCompletionBlock = { savedRecords, _, error in

@@ -14,7 +14,6 @@ enum CheckInStatus {
 }
 
 final class LocationDetailViewModel: ObservableObject {
-    
     @Published var checkedInProfiles: [DDGProfile] = []
     @Published var isShowingProfileModel = false
     @Published var isCheckedIn = false
@@ -36,9 +35,7 @@ final class LocationDetailViewModel: ObservableObject {
         let mapItem = MKMapItem(placemark: placemark)
         
         mapItem.name = location.name
-        
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
-        
     }
     
     func callLocation() {
@@ -79,7 +76,6 @@ final class LocationDetailViewModel: ObservableObject {
             switch result {
             case .success(let record):
                 // create a reference to the location
-                
                 switch checkInStatus {
                 case .checkedIn:
                     record[DDGProfile.kIsCheckedIn] = CKRecord.Reference(recordID: location.id, action: .none)
@@ -112,7 +108,6 @@ final class LocationDetailViewModel: ObservableObject {
                         }
                     }
                 }
-                
             case .failure(_):
                 alertItem = AlertContext.unableToCheckInOrOut
             }

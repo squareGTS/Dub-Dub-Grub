@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LocationListView: View {
-    
     @EnvironmentObject private var locationMananger: LocationManager
     @StateObject private var viewModel = LocationListViewModel()
     
@@ -22,9 +21,7 @@ struct LocationListView: View {
                     }
                 }
             }
-            .onAppear {
-                viewModel.getCheckedInProfilesDictionary()
-            }
+            .onAppear { viewModel.getCheckedInProfilesDictionary() }
             .navigationTitle("Grub Spots")
         }
     }

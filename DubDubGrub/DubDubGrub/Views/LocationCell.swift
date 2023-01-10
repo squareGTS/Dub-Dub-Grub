@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LocationCell: View {
-    
     var location: DDGLocation
     var profiles: [DDGProfile]
     
@@ -34,12 +33,12 @@ struct LocationCell: View {
                         .foregroundColor(.secondary)
                         .padding(.top, 2)
                     
-//                    HStack {
-//                        AvatarView(image: PlaceholderImage.avatar, size: 35)
-//                        AvatarView(image: PlaceholderImage.avatar, size: 35)
-//                        AvatarView(image: PlaceholderImage.avatar, size: 35)
-//                        AdditionalProfilesView(number: 99)
-//                    }
+                    //                    HStack {
+                    //                        AvatarView(image: PlaceholderImage.avatar, size: 35)
+                    //                        AvatarView(image: PlaceholderImage.avatar, size: 35)
+                    //                        AvatarView(image: PlaceholderImage.avatar, size: 35)
+                    //                        AdditionalProfilesView(number: 99)
+                    //                    }
                 } else {
                     HStack {
                         ForEach(profiles.indices, id: \.self) { index in

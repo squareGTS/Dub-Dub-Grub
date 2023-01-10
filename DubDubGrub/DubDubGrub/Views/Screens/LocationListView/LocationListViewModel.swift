@@ -8,7 +8,6 @@
 import CloudKit
 
 final class LocationListViewModel: ObservableObject {
-    
     @Published var checkedInProfiles: [CKRecord.ID: [DDGProfile]] = [:]
     
     func getCheckedInProfilesDictionary() {
@@ -17,7 +16,6 @@ final class LocationListViewModel: ObservableObject {
                 switch result {
                 case .success(let checkedInProfiles):
                     self.checkedInProfiles = checkedInProfiles
-                    print(checkedInProfiles)
                 case .failure(_):
                     print("Error getting back disctionary")
                 }

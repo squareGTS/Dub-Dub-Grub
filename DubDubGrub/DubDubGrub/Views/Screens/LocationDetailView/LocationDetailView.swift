@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LocationDetailView: View {
-    
     @ObservedObject var viewModel: LocationDetailViewModel
     
     var body: some View {
