@@ -6,6 +6,7 @@
 //
 
 import CloudKit
+import SwiftUI
 
 final class LocationListViewModel: ObservableObject {
     @Published var checkedInProfiles: [CKRecord.ID: [DDGProfile]] = [:]
@@ -28,5 +29,13 @@ final class LocationListViewModel: ObservableObject {
         let personPlurality = count == 1 ? "person" : "people"
         
         return "\(location.name) \(count) \(personPlurality) checked in."
+    }
+    
+    @ViewBuilder func createLocationDetailView(for location: DDGLocation, in dynamicTypeSize: DynamicTypeSize) -> some View {
+        if dynamicTypeSize >= .accessibility3 {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location)).embedInScrollView()
+        } else {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+        }
     }
 }

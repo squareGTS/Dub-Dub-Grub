@@ -10,12 +10,13 @@ import SwiftUI
 struct LocationListView: View {
     @EnvironmentObject private var locationMananger: LocationManager
     @StateObject private var viewModel = LocationListViewModel()
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(locationMananger.locations) { location in
-                    NavigationLink(destination: LocationDetailView(viewModel: LocationDetailViewModel(location: location))) {
+                    NavigationLink(destination: viewModel.createLocationDetailView(for: location, in: dynamicTypeSize)) {
                         LocationCell(location: location, profiles: viewModel.checkedInProfiles[location.id, default: []])
                             .accessibilityElement(children: .ignore)
                             .accessibilityLabel(Text(viewModel.createVoiceOverSummary(for: location)))

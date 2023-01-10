@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LocationDetailView: View {
     @ObservedObject var viewModel: LocationDetailViewModel
-    
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
     var body: some View {
         ZStack {
             VStack(spacing: 16) {
@@ -80,7 +80,7 @@ struct LocationDetailView: View {
                             .padding(.top, 30)
                     } else {
                         ScrollView {
-                            LazyVGrid(columns: viewModel.columns, content: {
+                            LazyVGrid(columns: viewModel.determinColumns(for: dynamicTypeSize), content: {
                                 
                                 ForEach(viewModel.checkedInProfiles) { profile in
                                     FirstNameAvstsrName(profile: profile)
@@ -136,14 +136,9 @@ struct LocationDetailView_Previews: PreviewProvider {
             LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)))
         }
         NavigationView {
-            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)))
+            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle))).embedInScrollView()
         }
-        NavigationView {
-            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)))
-        }
-        NavigationView {
-            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)))
-        }
+        
     }
 }
 
@@ -167,11 +162,12 @@ struct LocationActionButton: View {
 }
 
 struct FirstNameAvstsrName: View {
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
     var profile: DDGProfile
     
     var body: some View {
         VStack {
-            AvatarView(image: profile.createAvatarImage(), size: 64)
+            AvatarView(image: profile.createAvatarImage(), size: dynamicTypeSize >= .accessibility3 ? 100 : 64)
             
             Text(profile.firstName)
                 .bold()
@@ -208,9 +204,8 @@ struct DescriptionView: View {
     
     var body: some View {
         Text(text)
-            .lineLimit(3)
             .minimumScaleFactor(0.75)
-            .frame(height: 70)
+            .fixedSize(horizontal: false, vertical: true)
             .padding(.horizontal)
     }
 }

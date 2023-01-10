@@ -20,10 +20,6 @@ final class LocationDetailViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var alertItem: AlertItem?
     
-    let columns = [GridItem(.flexible()),
-                   GridItem(.flexible()),
-                   GridItem(.flexible())]
-    
     var location: DDGLocation
     var selectedProfile: DDGProfile? {
         didSet { isShowingProfileModel = true }
@@ -31,6 +27,11 @@ final class LocationDetailViewModel: ObservableObject {
     
     init(location: DDGLocation) {
         self.location = location
+    }
+    
+    func determinColumns(for sizeCategory: DynamicTypeSize) -> [GridItem] {
+        let numberOfColumns = sizeCategory >= .accessibility3 ? 1 : 3
+        return Array(repeating: GridItem(.flexible()), count: numberOfColumns)
     }
     
     func getDirectionsToLocation() {
