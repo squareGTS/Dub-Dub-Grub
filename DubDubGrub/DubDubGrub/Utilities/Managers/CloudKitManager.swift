@@ -110,6 +110,34 @@ final class CloudKitManager {
         CKContainer.default().publicCloudDatabase.add(operation)
     }
     
+    func getCheckedInProfilesCount(completed: @escaping (Result<[CKRecord.ID : Int], Error>) -> ()) {
+        let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
+        let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
+        let operation = CKQueryOperation(query: query)
+        operation.desiredKeys = [DDGProfile.kIsCheckedIn]
+        
+        var checkedInProfiles: [CKRecord.ID : Int] = [:]
+        
+        operation.recordFetchedBlock = { record in
+            guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { return }
+            
+            if let count = checkedInProfiles[locationReference.recordID] {
+                checkedInProfiles[locationReference.recordID] = count + 1
+            } else {
+                checkedInProfiles[locationReference.recordID] = 1
+            }
+        }
+        
+        operation.queryCompletionBlock = { cursor, error in
+            guard error == nil else {
+                completed(.failure(error!))
+                return
+            }
+            completed(.success(checkedInProfiles))
+        }
+        CKContainer.default().publicCloudDatabase.add(operation)
+    }
+    
     func batchSave(records: [CKRecord], completed: @escaping (Result<[CKRecord], Error>) -> ()) {
         
         //Create a CKOperation to save our User and Profile Records
