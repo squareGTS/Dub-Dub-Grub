@@ -34,19 +34,20 @@ struct LocationDetailView: View {
                             viewModel.getDirectionsToLocation()
                         } label: {
                             LocationActionButton(color: .brandPrimary, imageName: "location.fill")
-                                .accessibilityLabel(Text("Get directions."))
                         }
+                        .accessibilityLabel(Text("Get directions."))
                         Link(destination: URL(string: viewModel.location.websiteURL)!, label: {
                             LocationActionButton(color: .brandPrimary, imageName: "network")
-                                .accessibilityLabel(Text("Go to website."))
                         })
+                        .accessibilityRemoveTraits(.isButton)
+                        .accessibilityLabel(Text("Go to website."))
                         
                         Button {
                             viewModel.callLocation()
                         } label: {
                             LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
-                                .accessibilityLabel(Text("Call location."))
                         }
+                        .accessibilityLabel(Text("Call location."))
                         if let _ = CloudKitManager.shared.profileRecordID {
                             Button {
                                 viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
@@ -54,8 +55,8 @@ struct LocationDetailView: View {
                             } label: {
                                 LocationActionButton(color: viewModel.isCheckedIn ? .grubRed : .brandPrimary,
                                                      imageName: viewModel.isCheckedIn ? "person.fill.xmark" : "person.fill.checkmark")
-                                .accessibilityLabel(Text(viewModel.isCheckedIn ? "Check out of location" : "Check in to location"))
                             }
+                            .accessibilityLabel(Text(viewModel.isCheckedIn ? "Check out of location" : "Check in to location"))
                         }
                     }
                 }
@@ -84,9 +85,11 @@ struct LocationDetailView: View {
                                 ForEach(viewModel.checkedInProfiles) { profile in
                                     FirstNameAvstsrName(profile: profile)
                                         .accessibilityElement(children: .ignore)
+                                        .accessibilityAddTraits(.isButton)
+                                        .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
                                         .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
                                         .onTapGesture {
-                                            viewModel.isShowingProfileModel = true
+                                            viewModel.selectedProfile = profile
                                         }
                                 }
                             })
@@ -96,6 +99,7 @@ struct LocationDetailView: View {
                 }
                 Spacer()
             }
+            .accessibilityHidden(viewModel.isShowingProfileModel)
             
             if viewModel.isShowingProfileModel {
                 Color(.systemBackground)
@@ -105,8 +109,10 @@ struct LocationDetailView: View {
                     .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
                 //  .animation(.easeOut)
                     .zIndex(1)
+                    .accessibilityHidden(true)
+                
                 ProfileModalView(isShowingProfileModal: $viewModel.isShowingProfileModel,
-                                 profile: DDGProfile(record: MockData.profile))
+                                 profile: viewModel.selectedProfile!)
                 .transition(.opacity.combined(with: .slide))
                 .animation(.easeOut)
                 .zIndex(2)
