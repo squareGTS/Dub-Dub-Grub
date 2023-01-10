@@ -37,6 +37,7 @@
 		51DC55C0296C9FA500A5DCE5 /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC55BF296C9FA500A5DCE5 /* LocationListViewModel.swift */; };
 		51DC55C3296D559800A5DCE5 /* MapBallon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC55C2296D559800A5DCE5 /* MapBallon.swift */; };
 		51DC55C5296D5B2F00A5DCE5 /* DDGAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC55C4296D5B2F00A5DCE5 /* DDGAnnotation.swift */; };
+		51DC55C8296D621B00A5DCE5 /* AppTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC55C7296D621B00A5DCE5 /* AppTabViewModel.swift */; };
 		51DC929E29531535005C6F5E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC929D29531535005C6F5E /* Color+Ext.swift */; };
 		51DC92A029531589005C6F5E /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC929F29531589005C6F5E /* AppTabView.swift */; };
 		51DC92A2295315C8005C6F5E /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC92A1295315C8005C6F5E /* LocationMapView.swift */; };
@@ -77,6 +78,7 @@
 		51DC55BF296C9FA500A5DCE5 /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
 		51DC55C2296D559800A5DCE5 /* MapBallon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBallon.swift; sourceTree = "<group>"; };
 		51DC55C4296D5B2F00A5DCE5 /* DDGAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGAnnotation.swift; sourceTree = "<group>"; };
+		51DC55C7296D621B00A5DCE5 /* AppTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabViewModel.swift; sourceTree = "<group>"; };
 		51DC929C29531389005C6F5E /* DubDubGrub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DubDubGrub.entitlements; sourceTree = "<group>"; };
 		51DC929D29531535005C6F5E /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		51DC929F29531589005C6F5E /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
@@ -122,11 +124,11 @@
 		51023ACD2954A83F00C3A7D6 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				51DC55C6296D620100A5DCE5 /* AppTabView */,
 				51DC55BE296C9F6800A5DCE5 /* LocationListView */,
 				51B0804F295C8CC900F724C9 /* LocationDetailView */,
 				51B0804A295AFFC800F724C9 /* ProfileView */,
 				51023AE02955B42300C3A7D6 /* LocationMapView */,
-				51DC929F29531589005C6F5E /* AppTabView.swift */,
 				51023AE82955F58700C3A7D6 /* OnboardView.swift */,
 			);
 			path = Screens;
@@ -278,6 +280,15 @@
 			path = "Map Annotation";
 			sourceTree = "<group>";
 		};
+		51DC55C6296D620100A5DCE5 /* AppTabView */ = {
+			isa = PBXGroup;
+			children = (
+				51DC55C7296D621B00A5DCE5 /* AppTabViewModel.swift */,
+				51DC929F29531589005C6F5E /* AppTabView.swift */,
+			);
+			path = AppTabView;
+			sourceTree = "<group>";
+		};
 		51F85FED2959D72D00998D7F /* UIKit Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +378,7 @@
 				51023AD42955913A00C3A7D6 /* DDGProfile.swift in Sources */,
 				51023AD22954F52900C3A7D6 /* DDGLocation.swift in Sources */,
 				51DC92A029531589005C6F5E /* AppTabView.swift in Sources */,
+				51DC55C8296D621B00A5DCE5 /* AppTabViewModel.swift in Sources */,
 				51F85FEF2959D79400998D7F /* PhotoPicker.swift in Sources */,
 				51DC92A6295315F3005C6F5E /* ProfileView.swift in Sources */,
 				51023AD92955A34800C3A7D6 /* CloudKitManager.swift in Sources */,
