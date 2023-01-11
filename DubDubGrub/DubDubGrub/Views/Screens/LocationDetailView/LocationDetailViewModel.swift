@@ -13,7 +13,7 @@ enum CheckInStatus {
     case checkedIn, checkedOut
 }
 
-final class LocationDetailViewModel: ObservableObject {
+@MainActor final class LocationDetailViewModel: ObservableObject {
     @Published var checkedInProfiles: [DDGProfile] = []
     @Published var isShowingProfileModal = false
     @Published var isShowingProfileSheet = false
@@ -127,15 +127,25 @@ final class LocationDetailViewModel: ObservableObject {
     
     func getCheckedInProfile() {
         showLoadingView()
-        CloudKitManager.shared.getCheckedInProfiles(for: location.id) { [self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let profiles):
-                    self.checkedInProfiles = profiles
-                case .failure(_):
-                    self.alertItem = AlertContext.unableToGetCheckedInProfiles
-                }
-                self.hideLoadingView()
+        //        CloudKitManager.shared.getCheckedInProfiles(for: location.id) { [self] result in
+        //            DispatchQueue.main.async {
+        //                switch result {
+        //                case .success(let profiles):
+        //                    self.checkedInProfiles = profiles
+        //                case .failure(_):
+        //                    self.alertItem = AlertContext.unableToGetCheckedInProfiles
+        //                }
+        //                self.hideLoadingView()
+        //            }
+        //        }
+        
+        Task {
+            do {
+                checkedInProfiles = try await CloudKitManager.shared.getCheckedInProfiles(for: location.id)
+                hideLoadingView()
+            } catch {
+                hideLoadingView()
+                alertItem = AlertContext.unableToGetCheckedInProfiles
             }
         }
     }
