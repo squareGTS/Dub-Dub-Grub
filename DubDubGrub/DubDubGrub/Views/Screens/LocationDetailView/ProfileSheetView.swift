@@ -40,36 +40,12 @@ struct ProfileSheetView: View {
             }
             .padding()
         }
-        
-        
-        
-        ZStack {
-            VStack {
-                Spacer().frame(height: 60)
-               
-                
-             
-                
-             
-            }
-            .frame(width: 300, height: 230)
-            .background(Color(.secondarySystemBackground))
-            .cornerRadius(16)
-//            .overlay(
-//                Button {
-//                    withAnimation { isShowingProfileModal = false }
-//                } label: {
-//                    XDismissButton()
-//                }, alignment: .topTrailing
-//            )
-            
-         
-        }
     }
 }
 
 struct ProfileSheetView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileSheetView(profile: DDGProfile(record: MockData.profile))
+            .environment(\.dynamicTypeSize, .accessibility5)
     }
 }

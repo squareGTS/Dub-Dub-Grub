@@ -27,7 +27,7 @@ struct LocationMapView: View {
                     }
                 }
             }
-            .accentColor(.grubRed)
+            .tint(.grubRed)
             .ignoresSafeArea()
             
             LogoView(frameWidth: 125).shadow(radius: 10)
@@ -40,7 +40,6 @@ struct LocationMapView: View {
                         Button("Dismiss", action: { viewModel.isShowingDetailView = false })
                     }
             }
-            .accentColor(.brandPrimary)
         }
         .alert(item: $viewModel.alertItem) { $0.alert }
         .onAppear{

@@ -38,7 +38,6 @@ struct LocationDetailView: View {
                 ProfileSheetView(profile: viewModel.selectedProfile!)
                     .toolbar { Button("Dismiss", action: { viewModel.isShowingProfileSheet = false }) }
             }
-            .accentColor(.brandPrimary)
         }
         .alert(item: $viewModel.alertItem) { $0.alert }
         .navigationTitle(viewModel.location.name)
@@ -224,7 +223,9 @@ fileprivate struct AvatarGridView: View {
                     LazyVGrid(columns: viewModel.determinColumns(for: dynamicTypeSize), content: {
                         ForEach(viewModel.checkedInProfiles) { profile in
                             FirstNameAvatarView(profile: profile)
-                                .onTapGesture { viewModel.show(profile, in: dynamicTypeSize) }
+                                .onTapGesture {
+                                    withAnimation { viewModel.show(profile, in: dynamicTypeSize) }
+                                }
                         }
                     })
                 }

@@ -31,8 +31,8 @@ final class LocationDetailViewModel: ObservableObject {
         self.location = location
     }
     
-    func determinColumns(for sizeCategory: DynamicTypeSize) -> [GridItem] {
-        let numberOfColumns = sizeCategory >= .accessibility3 ? 1 : 3
+    func determinColumns(for dynamicType: DynamicTypeSize) -> [GridItem] {
+        let numberOfColumns = dynamicType >= .accessibility3 ? 1 : 3
         return Array(repeating: GridItem(.flexible()), count: numberOfColumns)
     }
     
