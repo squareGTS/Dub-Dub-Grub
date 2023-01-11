@@ -15,15 +15,14 @@ enum CheckInStatus {
 
 final class LocationDetailViewModel: ObservableObject {
     @Published var checkedInProfiles: [DDGProfile] = []
-    @Published var isShowingProfileModel = false
+    @Published var isShowingProfileModal = false
+    @Published var isShowingProfileSheet = false
     @Published var isCheckedIn = false
     @Published var isLoading = false
     @Published var alertItem: AlertItem?
     
     var location: DDGLocation
-    var selectedProfile: DDGProfile? {
-        didSet { isShowingProfileModel = true }
-    }
+    var selectedProfile: DDGProfile?
     
     init(location: DDGLocation) {
         self.location = location
@@ -130,6 +129,15 @@ final class LocationDetailViewModel: ObservableObject {
                 }
                 self.hideLoadingView()
             }
+        }
+    }
+    
+    func show(profile: DDGProfile, in dynamicTypeSize: DynamicTypeSize) {
+        selectedProfile = profile
+        if dynamicTypeSize >= .accessibility3 {
+            isShowingProfileSheet = true
+        } else {
+            isShowingProfileModal = true
         }
     }
     

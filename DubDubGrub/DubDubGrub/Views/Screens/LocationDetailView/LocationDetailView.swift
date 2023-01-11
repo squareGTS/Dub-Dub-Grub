@@ -89,7 +89,7 @@ struct LocationDetailView: View {
                                         .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
                                         .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
                                         .onTapGesture {
-                                            viewModel.selectedProfile = profile
+                                            viewModel.show(profile: profile, in: dynamicTypeSize)
                                         }
                                 }
                             })
@@ -99,9 +99,9 @@ struct LocationDetailView: View {
                 }
                 Spacer()
             }
-            .accessibilityHidden(viewModel.isShowingProfileModel)
+            .accessibilityHidden(viewModel.isShowingProfileModal)
             
-            if viewModel.isShowingProfileModel {
+            if viewModel.isShowingProfileModal {
                 Color(.black)
                     .ignoresSafeArea()
                     .opacity(0.9)
@@ -111,7 +111,7 @@ struct LocationDetailView: View {
                     .zIndex(1)
                     .accessibilityHidden(true)
                 
-                ProfileModalView(isShowingProfileModal: $viewModel.isShowingProfileModel,
+                ProfileModalView(isShowingProfileModal: $viewModel.isShowingProfileModal,
                                  profile: viewModel.selectedProfile!)
                 .transition(.opacity.combined(with: .slide))
                 .animation(.easeOut)
@@ -121,6 +121,13 @@ struct LocationDetailView: View {
         .onAppear {
             viewModel.getCheckedInProfile()
             viewModel.getCheckedInStatus()
+        }
+        .sheet(isPresented: $viewModel.isShowingProfileSheet) {
+            NavigationView {
+                ProfileSheetView(profile: viewModel.selectedProfile!)
+                    .toolbar { Button("Dismiss", action: { viewModel.isShowingProfileSheet = false }) }
+            }
+            .accentColor(.brandPrimary)
         }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
