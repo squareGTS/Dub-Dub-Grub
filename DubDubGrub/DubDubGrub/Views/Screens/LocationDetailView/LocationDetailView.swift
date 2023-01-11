@@ -51,11 +51,12 @@ struct LocationDetailView: View {
                         if let _ = CloudKitManager.shared.profileRecordID {
                             Button {
                                 viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
-                                playHaptic()
+                                
                             } label: {
                                 LocationActionButton(color: viewModel.isCheckedIn ? .grubRed : .brandPrimary,
                                                      imageName: viewModel.isCheckedIn ? "person.fill.xmark" : "person.fill.checkmark")
                             }
+                            .disabled(viewModel.isLoading)
                             .accessibilityLabel(Text(viewModel.isCheckedIn ? "Check out of location" : "Check in to location"))
                         }
                     }
@@ -89,7 +90,7 @@ struct LocationDetailView: View {
                                         .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
                                         .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
                                         .onTapGesture {
-                                            viewModel.show(profile: profile, in: dynamicTypeSize)
+                                            viewModel.show(profile, in: dynamicTypeSize)
                                         }
                                 }
                             })
@@ -97,7 +98,6 @@ struct LocationDetailView: View {
                     }
                     if viewModel.isLoading { LoadingView() }
                 }
-                Spacer()
             }
             .accessibilityHidden(viewModel.isShowingProfileModal)
             
@@ -129,9 +129,7 @@ struct LocationDetailView: View {
             }
             .accentColor(.brandPrimary)
         }
-        .alert(item: $viewModel.alertItem, content: { alertItem in
-            Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
-        })
+        .alert(item: $viewModel.alertItem) { $0.alert }
         .navigationTitle(viewModel.location.name)
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -142,14 +140,10 @@ struct LocationDetailView_Previews: PreviewProvider {
         NavigationView {
             LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle)))
         }
-        NavigationView {
-            LocationDetailView(viewModel: LocationDetailViewModel(location: DDGLocation(record: MockData.chipotle))).embedInScrollView()
-        }
-        
     }
 }
 
-struct LocationActionButton: View {
+fileprivate struct LocationActionButton: View {
     var color: Color
     var imageName: String
     
@@ -168,7 +162,7 @@ struct LocationActionButton: View {
     }
 }
 
-struct FirstNameAvstsrName: View {
+fileprivate struct FirstNameAvstsrName: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     var profile: DDGProfile
     
@@ -184,7 +178,7 @@ struct FirstNameAvstsrName: View {
     }
 }
 
-struct BannerImageView: View {
+fileprivate struct BannerImageView: View {
     var image: UIImage
     
     var body: some View {
@@ -196,7 +190,7 @@ struct BannerImageView: View {
     }
 }
 
-struct AdressView: View {
+fileprivate struct AdressView: View {
     var adress: String
     
     var body: some View {
@@ -206,7 +200,7 @@ struct AdressView: View {
     }
 }
 
-struct DescriptionView: View {
+fileprivate struct DescriptionView: View {
     var text: String
     
     var body: some View {

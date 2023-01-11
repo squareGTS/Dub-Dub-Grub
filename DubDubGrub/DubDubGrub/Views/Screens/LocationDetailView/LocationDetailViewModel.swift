@@ -75,6 +75,8 @@ final class LocationDetailViewModel: ObservableObject {
             alertItem = AlertContext.unableToGetProfile
             return
         }
+        
+        showLoadingView()
         CloudKitManager.shared.fetchRecord(with: profilerecordID) { [self] result in
             switch result {
             case .success(let record):
@@ -90,24 +92,27 @@ final class LocationDetailViewModel: ObservableObject {
                 
                 // Save the uploaded profile to CloudKit
                 CloudKitManager.shared.save(record: record) { result in
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
+                        hideLoadingView()
                         switch result {
                         case .success(let record):
+                            HapticManager.playSuccess()
                             let profile = DDGProfile(record: record)
                             
                             switch checkInStatus {
                             case .checkedIn:
                                 // update our checkInProfiles array
-                                self.checkedInProfiles.append(profile)
+                                checkedInProfiles.append(profile)
                             case .checkedOut:
-                                self.checkedInProfiles.removeAll { $0.id == profile.id }
+                                checkedInProfiles.removeAll { $0.id == profile.id }
                             }
                             
-                            self.isCheckedIn = checkInStatus == .checkedIn
+                            isCheckedIn.toggle()
                             
                             print("✅ Checked In/Out Successfuly")
                         case .failure(_):
-                            self.alertItem = AlertContext.unableToCheckInOrOut
+                            hideLoadingView()
+                            alertItem = AlertContext.unableToCheckInOrOut
                         }
                     }
                 }
@@ -132,7 +137,7 @@ final class LocationDetailViewModel: ObservableObject {
         }
     }
     
-    func show(profile: DDGProfile, in dynamicTypeSize: DynamicTypeSize) {
+    func show(_ profile: DDGProfile, in dynamicTypeSize: DynamicTypeSize) {
         selectedProfile = profile
         if dynamicTypeSize >= .accessibility3 {
             isShowingProfileSheet = true
