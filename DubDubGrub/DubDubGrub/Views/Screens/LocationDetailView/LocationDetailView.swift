@@ -29,7 +29,7 @@ struct LocationDetailView: View {
                                  profile: viewModel.selectedProfile!)
             }
         }
-        .onAppear {
+        .task {
             viewModel.getCheckedInProfile()
             viewModel.getCheckedInStatus()
         }

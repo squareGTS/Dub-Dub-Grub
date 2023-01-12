@@ -70,7 +70,7 @@ struct ProfileView: View {
                 Image(systemName: "keyboard.chevron.compact.down")
             }
         }
-        .onAppear {
+        .task {
             viewModel.getProfile()
             viewModel.getCheckedInStatus()
         }

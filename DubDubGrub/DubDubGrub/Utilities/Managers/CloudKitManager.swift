@@ -87,21 +87,21 @@ final class CloudKitManager {
         return records.map(DDGLocation.init)
     }
     
-//    func getCheckedInProfiles(for locationID: CKRecord.ID, completed: @escaping (Result<[DDGProfile], Error>) -> Void) {
-//        let reference = CKRecord.Reference(recordID: locationID, action: .none)
-//        let predicate = NSPredicate(format: "isCheckedIn == %@", reference)
-//        let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
-//
-//        CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { records, error in
-//            guard let records = records, error == nil else {
-//                completed(.failure(error!))
-//                return
-//            }
-//
-//            let profiles = records.map(DDGProfile.init)
-//            completed(.success(profiles))
-//        }
-//    }
+    //    func getCheckedInProfiles(for locationID: CKRecord.ID, completed: @escaping (Result<[DDGProfile], Error>) -> Void) {
+    //        let reference = CKRecord.Reference(recordID: locationID, action: .none)
+    //        let predicate = NSPredicate(format: "isCheckedIn == %@", reference)
+    //        let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
+    //
+    //        CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { records, error in
+    //            guard let records = records, error == nil else {
+    //                completed(.failure(error!))
+    //                return
+    //            }
+    //
+    //            let profiles = records.map(DDGProfile.init)
+    //            completed(.success(profiles))
+    //        }
+    //    }
     
     func getCheckedInProfiles(for locationID: CKRecord.ID) async throws -> [DDGProfile] {
         let reference = CKRecord.Reference(recordID: locationID, action: .none)
@@ -114,76 +114,56 @@ final class CloudKitManager {
         return records.map(DDGProfile.init)
     }
     
-    func getCheckedInProfilesDictionary(completed: @escaping (Result<[CKRecord.ID : [DDGProfile]], Error>) -> ()) {
+    func getCheckedInProfilesDictionary() async throws -> [CKRecord.ID : [DDGProfile]] {
+        print("✅ Network call fired off")
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
         let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
-        let operation = CKQueryOperation(query: query)
-        //operattion.desiredKeys = [DDGProfile.kIsCheckedIn, DDGProfile.kAvatar]
         
         var checkedInProfiles: [CKRecord.ID : [DDGProfile]] = [:]
         
-        operation.recordFetchedBlock = { record in
+        let (matchResults, cursor) = try await container.publicCloudDatabase.records(matching: query)
+        let records = matchResults.compactMap { _, result in try? result.get() }
+        
+        for record in records {
             // Build our dictionary
             let profile = DDGProfile(record: record)
-            guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { return }
+            guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { continue }
             checkedInProfiles[locationReference.recordID, default: []].append(profile)
         }
-        operation.queryCompletionBlock = { cursor, error in
-            guard error == nil else {
-                completed(.failure(error!))
-                return
-            }
-            
-            if let cursor = cursor {
-                self.continueWithCheckedInProfilesDict(cursor: cursor, dictionary: checkedInProfiles) { result in
-                    switch result {
-                    case .success(let profiles):
-                        completed(.success(profiles))
-                    case .failure(let error):
-                        completed(.failure(error))
-                    }
-                }
-            } else {
-                completed(.success(checkedInProfiles))
-            }
+        
+        print("1️⃣ checkedInProfiles = \(checkedInProfiles)")
+        guard let cursor = cursor else { return checkedInProfiles }
+        
+        do {
+            return try await continueWithCheckedInProfilesDict(cursor: cursor, dictionary: checkedInProfiles)
+        } catch {
+            throw error
         }
-        CKContainer.default().publicCloudDatabase.add(operation)
     }
     
-    func continueWithCheckedInProfilesDict(cursor: CKQueryOperation.Cursor,
-                                           dictionary: [CKRecord.ID : [DDGProfile]],
-                                           completed: @escaping (Result<[CKRecord.ID : [DDGProfile]], Error>) -> ()) {
+    private func continueWithCheckedInProfilesDict(cursor: CKQueryOperation.Cursor,
+                                                   dictionary: [CKRecord.ID : [DDGProfile]]) async throws -> [CKRecord.ID : [DDGProfile]] {
         
         var checkedInProfiles = dictionary
-        let operation = CKQueryOperation(cursor: cursor)
         
-        operation.recordFetchedBlock = { record in
+        let (matchResults, cursor) = try await container.publicCloudDatabase.records(continuingMatchFrom: cursor)
+        let records = matchResults.compactMap { _, result in try? result.get() }
+        
+        for record in records {
             // Build our dictionary
             let profile = DDGProfile(record: record)
-            guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { return }
+            guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { continue }
             checkedInProfiles[locationReference.recordID, default: []].append(profile)
         }
         
-        operation.queryCompletionBlock = { cursor, error in
-            guard error == nil else {
-                completed(.failure(error!))
-                return
-            }
-            
-            if let cursor = cursor {
-                self.continueWithCheckedInProfilesDict(cursor: cursor, dictionary: checkedInProfiles) { result in
-                    switch result {
-                    case .success(let profiles):
-                        completed(.success(profiles))
-                    case .failure(let error):
-                        completed(.failure(error))
-                    }
-                }
-            } else {
-                completed(.success(checkedInProfiles))
-            }
+        print("⭕️ checkedInProfiles = \(checkedInProfiles)")
+        guard let cursor = cursor else { return checkedInProfiles }
+        
+        do {
+            return try await continueWithCheckedInProfilesDict(cursor: cursor, dictionary: checkedInProfiles)
+        } catch {
+            throw error
         }
-        CKContainer.default().publicCloudDatabase.add(operation)
     }
     
     func getCheckedInProfilesCount(completed: @escaping (Result<[CKRecord.ID : Int], Error>) -> ()) {
