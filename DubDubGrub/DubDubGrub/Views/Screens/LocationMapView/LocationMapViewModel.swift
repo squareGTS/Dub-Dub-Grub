@@ -64,15 +64,22 @@ extension LocationMapView {
         }
         
         func getCheckedInCounts() {
-            CloudKitManager.shared.getCheckedInProfilesCount { result in
-                DispatchQueue.main.async { [self] in
-                    switch result {
-                    case .success(let checkedInProfiles):
-                        self.checkedInProfiles = checkedInProfiles
-                    case .failure(_):
-                        alertItem = AlertContext.checkedInCount
-                        break
-                    }
+            //            CloudKitManager.shared.getCheckedInProfilesCount { result in
+            //                DispatchQueue.main.async { [self] in
+            //                    switch result {
+            //                    case .success(let checkedInProfiles):
+            //                        self.checkedInProfiles = checkedInProfiles
+            //                    case .failure(_):
+            //                        alertItem = AlertContext.checkedInCount
+            //                        break
+            //                    }
+            //                }
+            //            }
+            Task {
+                do {
+                    checkedInProfiles = try await CloudKitManager.shared.getCheckedInProfilesCount()
+                } catch {
+                    alertItem = AlertContext.checkedInCount
                 }
             }
         }
